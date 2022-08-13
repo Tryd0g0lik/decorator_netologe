@@ -1,30 +1,47 @@
-import random
-import time
+from habr.get_page import craper_word
+from habr.decorate import decor_word
+from habr.decorate import decor_pars
+from habr.get_page import search_page
+from habr.get_page import keyword
+import datetime
+
+if __name__ == ("__main__"):
+  log = {}
+
+  url = "https://habr.com/ru/search/"
+
+  fmt = "%Y-%m-%d %H:%M:%S"
+  time_start = datetime.datetime.now().strftime(fmt)
+  name_ = craper_word.__name__
+  fun_object = craper_word
 
 
-def my_generator():
-  # этот код выполнится на входе в цикл for item in my_generator()
+  @decor_word
+  fun_object
 
-  print('Цикл начался')
+  time_start = datetime.datetime.now().strftime(fmt)
+  name_ = decor_word(fun_object).__name__
+  list_phrase = decor_word(fun_object)
 
-  while True:
+  list_, words = list_phrase()
 
-    if random.randint(1, 10) == 1:
-      # условие выхода из цикла
-      print('выход из цикла')
+  time_start = datetime.datetime.now().strftime(fmt)
+  name_ = decor_pars(search_page).__name__
+  fun_get_prser = decor_pars(search_page)
 
-      break
+  response = fun_get_prser(url, list_)
 
-    print('-' * 20)
-    print('Новая итерация')
+  log["keyword"] = words
+  log["time"] = time_start
+  log["function-name"] = name_
+  log["response"] = response[1]
 
-    result = time.time()
+  try:
+    file =  open("files/log.txt", "xwt", encoding="utf=8")
+    file.write(str(log))
 
-    # result подставится в item
-    print(f'{result} -> item')
-
-    yield result
-
-
-for item in my_generator():
-  print(item)
+  except Exception:
+    file = open("files/log.txt", "wt", encoding="utf=8")
+    file.write(str(log))
+  finally:
+    file.close()
