@@ -16,8 +16,7 @@ if __name__ == ("__main__"):
   fun_object = craper_word
 
 
-  @decor_word
-  fun_object
+
 
   time_start = datetime.datetime.now().strftime(fmt)
   name_ = decor_word(fun_object).__name__
@@ -30,7 +29,7 @@ if __name__ == ("__main__"):
   fun_get_prser = decor_pars(search_page)
 
   response = fun_get_prser(url, list_)
-
+  logirovanie = {}
   log["keyword"] = words
   log["time"] = time_start
   log["function-name"] = name_

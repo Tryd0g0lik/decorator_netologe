@@ -32,7 +32,8 @@ def decor_word(fun):
 def decor_pars(fun):
   def get_parser(url, words):
 
-    responses = []
+
+
     for word in words:
       word = str(word).strip().lower()
       params = {"q" : word, 'target_type' : 'posts', 'order' : 'relevance'}
@@ -59,15 +60,15 @@ def decor_pars(fun):
           Время публикации: %s  
           """%(htmml_h2, text_datatima))
           print(response)
-          (responses).append(response)
       except Exception:
         print(sys.exc_info() )
-        return(sys.exc_info(), responses)
 
 
-    return (result, responses)
+    return (result, response)
 
   return get_parser
 
 # декоратор, итераторы, iterator, магические функции
 
+def main():
+  decor_word(fun)
