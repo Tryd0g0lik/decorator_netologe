@@ -4,7 +4,7 @@ import requests
 import sys
 from habr_v2.decorate import *
 
-@parametrized_decoder(path_to_log = "files/log2.txt")
+@parametrized_decoder(path_to_log = "files/log.txt")
 @decor_word
 def craper_word():
   word_of_sentence = input("Enter: ")
@@ -14,7 +14,7 @@ def keyword(word_of_sentence):
   return word_of_sentence
 
 
-@parametrized_decoder(path_to_log = "files/log2.txt")
+@parametrized_decoder(path_to_log = "files/log.txt")
 @decor_pars
 def search_page(url_, params_ = None, header_=None, data_ = None):
   try:
