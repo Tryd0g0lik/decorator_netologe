@@ -15,13 +15,13 @@ def decor_word(fun):
 
     words = fun();
     words_list = str(words).strip().split(", ")
-    print("word_list", sys.getsizeof(words_list))
+    print("word_list:", sys.getsizeof(words_list), " байт." )
 
     list_var = []
     for row in (phrase for phrase in words_list):
       row = (row) #[ :-1]
       list_var.append(row)
-    print("list_var", sys.getsizeof(list_var))
+    print("list_var:", sys.getsizeof(list_var), " байт." )
 
     return list_var, words
 
@@ -68,6 +68,8 @@ def decor_pars(fun):
     return (result, responses)
 
   return get_parser
+
+
 
 # декоратор, итераторы, iterator, магические функции
 
